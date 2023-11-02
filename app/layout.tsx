@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
+import PageHeader from '@/components/page-header';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
@@ -19,10 +21,11 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'container min-h-screen bg-background font-sans antialiased',
           inter.variable
         )}
       >
+        <PageHeader />
         {children}
       </body>
     </html>
