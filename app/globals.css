@@ -78,3 +78,9 @@
     font-size: 2rem;
   }
 }
+
+.icon {
+  color: #5c5c5c;
+  cursor: pointer;
+  padding: 4px;
+}
