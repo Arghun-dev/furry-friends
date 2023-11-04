@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-import AddCatCard from '@/components/AddCatCard';
 import { getCats } from '@/lib/api';
 import { H4, P } from '@/components/ui/typography';
+import { AddOrEditCatDialog } from '@/components/AddOrEditCatDialog';
 
 export default async function Home() {
   const cats = await getCats();
@@ -17,7 +17,7 @@ export default async function Home() {
           </div>
         </div>
       ))}
-      <AddCatCard />
+      <AddOrEditCatDialog />
     </div>
   );
 }
