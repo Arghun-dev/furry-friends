@@ -120,3 +120,59 @@ The `Search` component relies on the following libraries, components, and hooks:
 4. The `useEffect` hook monitors changes in the `debouncedValue` and triggers the `filter` function with the search parameters, allowing for search operations to occur.
 
 5. The search icon is displayed to the left of the input field.
+
+# Sort Component Documentation
+
+The `Sort` component is a React component designed for implementing sorting functionality in the web application. It allows users to change the sorting order of a list or data based on a specific criteria, in this case, sorting by name. The component relies on several libraries and UI components to achieve this functionality.
+
+## Usage
+
+To use the `Sort` component, follow these steps:
+
+1. Import the `Sort` component into your file:
+
+   ```javascript
+   import Sort from 'path/to/Sort';
+   ```
+
+2. Render the component within your React application.
+
+   ```javascript
+   <Sort />
+   ```
+
+## Component Structure
+
+The `Sort` component consists of the following key parts:
+
+1. Import Statements: The component imports the required libraries and components, including React, Next.js, and UI components.
+
+2. State Management: The component uses `useState` to manage the sorting order (`sort`).
+
+3. Effect Hook: The `useEffect` hook listens for changes in the `sort` state and triggers the `filter` function, which is responsible for handling the sorting operation. The `useSearchParams` and `useRouter` hooks are used to obtain the current search parameters and navigate to the sorted results.
+
+4. Tooltip Content Rendering: The `renderContent` variable is calculated using `useMemo` and provides the tooltip trigger and content based on the sorting order. It dynamically changes based on the current sorting state (`sort`).
+
+5. UI Rendering: The component renders a tooltip containing the sorting functionality. It includes the text "Sort by: Name" along with a sorting icon and a tooltip with a description of the sorting action.
+
+## Props
+
+The `Sort` component does not accept any props, and it relies on internal state management and hooks.
+
+## Component Dependencies
+
+The `Sort` component relies on the following libraries, components, and hooks:
+
+- React and Next.js for building the component.
+- `lucide-react` for rendering the sorting icons.
+- `filter` function from `'@/lib/filter'` for handling the sorting operation.
+- `useSearchParams` and `useRouter` hooks from Next.js for managing search parameters and navigation.
+- `Tooltip`, `TooltipProvider`, `TooltipTrigger`, and `TooltipContent` components from `'@/components/ui/tooltip'` for tooltip functionality.
+
+## Component Behavior
+
+1. The component initially displays a tooltip with the text "Sort by: Name" and an arrow icon indicating the current sorting order.
+
+2. Clicking the arrow icon toggles the sorting order between ascending (up arrow), descending (down arrow), and no sorting (horizontal arrow). The tooltip content dynamically changes to reflect the current sorting state.
+
+3. The `useEffect` hook listens for changes in the `sort` state and triggers the `filter` function with the sorting criteria. This allows for sorting operations to occur based on the selected sorting order.
