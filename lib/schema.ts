@@ -1,10 +1,10 @@
 import { z } from 'zod';
 
 export const AddOrEditCatFormSchema = z.object({
-  name: z.string().trim().min(1, { message: 'Name is required' }),
-  bio: z.string().min(1, { message: 'Bio is required' }),
+  name: z.string({ required_error: 'Name is required' }).trim().min(1),
+  bio: z.string({ required_error: 'Bio is required' }).min(1),
   gender: z.string({
-    required_error: 'Please select gender',
+    required_error: 'Gender is required',
   }),
-  dob: z.date(),
+  dob: z.date({ required_error: 'Birthdate is required' }),
 });

@@ -60,6 +60,7 @@ export default function AddOrEditCatForm({
     }
     toast({
       title: res.data,
+      duration: 1000000,
     });
 
     if (res.success) {
@@ -69,7 +70,11 @@ export default function AddOrEditCatForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className='space-y-8'
+        data-testid='add-or-edit-form'
+      >
         <FormField
           control={form.control}
           name='name'
@@ -91,7 +96,7 @@ export default function AddOrEditCatForm({
               <FormLabel>Gender</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger data-testid='select-gender-button'>
                     <SelectValue placeholder='Select gender' {...field} />
                   </SelectTrigger>
                 </FormControl>
