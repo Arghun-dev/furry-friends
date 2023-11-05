@@ -7,7 +7,7 @@ import { deleteCat } from '@/lib/actions';
 import { Cat } from '@prisma/client';
 import { useState } from 'react';
 
-export default function DeleteCat_Trigger({ cat }: { cat: Cat }) {
+export default function DeleteCatDialogAction({ cat }: { cat: Cat }) {
   const { setShouldCloseModal, shouldCloseModal } = useModal();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);

@@ -64,11 +64,13 @@ export const Modal = ({
     return (
       <AlertDialog open={open}>
         <AlertDialogTrigger onClick={showModal}>
-          <X className='icon ml-1' />
+          {triggerContent}
         </AlertDialogTrigger>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>{title}</AlertDialogTitle>
+            <AlertDialogTitle data-testid='modal-title'>
+              {title}
+            </AlertDialogTitle>
             <AlertDialogDescription>{description}</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -88,7 +90,7 @@ export const Modal = ({
       <DialogContent className='sm:max-w-[425px]'>
         <DialogHeader>
           <div className='flex items-center justify-between'>
-            <DialogTitle>{title}</DialogTitle>
+            <DialogTitle data-testid='modal-title'>{title}</DialogTitle>
             <X className='cursor-pointer p-1' onClick={hideModal} />
           </div>
         </DialogHeader>

@@ -9,7 +9,7 @@ export default function EditCat({ cat }: { cat: Cat }) {
     <Modal
       modalType={MODAL_FOR_EDIT_CAT}
       title='Edit Cat'
-      triggerContent={<Pencil className='icon' />}
+      triggerContent={<Pencil className='icon' data-testid='edit-cat-icon' />}
     >
       <AddOrEditCatForm defaultValues={cat} />
     </Modal>

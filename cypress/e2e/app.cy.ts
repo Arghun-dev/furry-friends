@@ -1,8 +1,10 @@
 describe('Navigation', () => {
-  it('should handle form validation', () => {
+  beforeEach(() => {
     // Start from the index page
     cy.visit('/');
+  });
 
+  it('should handle form validation', () => {
     // Find Add Cat card and click on it
     cy.get('div[data-testid="add-cat-card"]').click();
 
@@ -16,12 +18,18 @@ describe('Navigation', () => {
     cy.contains('Bio is required');
   });
 
-  it('Add or edit cat', () => {
+  it('Add cat', () => {
     // Start from the index page
     cy.visit('/');
 
     // Find Add Cat card and click on it
     cy.get('div[data-testid="add-cat-card"]').click();
+
+    // Find heading and assert Add Cat title
+    cy.get('h2[data-testid="modal-title"]').should('contain', 'Add Cat');
+
+    // find form and assert that form is visible
+    cy.get('form[data-testid="add-or-edit-form"]').should('be.visible');
 
     // Find Name field and type in it
     cy.get('input[name="name"]').focus().type('Test Name');
@@ -68,4 +76,16 @@ describe('Navigation', () => {
     //   addOrEditForm.should('not.be.visible');
     // }
   });
+
+  it('Edit cat', () => {
+    // Find Edit Cat icon and click on it
+    cy.get('svg[data-testid="edit-cat-icon"]').eq(0).click();
+
+    // Find heading and assert Edit Cat title
+    cy.get('h2[data-testid="modal-title"]').should('contain', 'Edit Cat');
+
+    // ... rest of the tests
+  });
+
+  // ... rest of the tests
 });
