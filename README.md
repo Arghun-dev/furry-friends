@@ -1,70 +1,58 @@
-# furry-friends
+Here's an improved and cleaner version of your GitHub README:
 
-## Documentaion
-
-You can access to the project live in here: [link](https://furry-friends-beta.vercel.app/)
-
-## Tech Stacks
-
-1. `Next.js`
-2. `Typescript`
-3. `Tailwind + Shadcn/ui`
-4. `react-hooks-form + zod`
-5. `Planetscale serverless database`
-6. `Prisma ORM`
-7. `date-fns`
-8. `lucide-react icons package`
-9. `eslint + husky + prettier`
-
-## Why Next.js
-
-I used `Next.js` because of the recent feature of Next.js specifically `Server Components`, `Server Actions` which are really cool and powerful. rendering as far as possible on the server instead of the client to reduce the javascript bundle size which is better for performance. And most of other features of Next.js which you can read on Next.js Docs.
-
-## Why Typescript
-
-I honestly always use typescript, because I believe typescript is pretty nice and type safe which makes your application less buggy and more maintainable. And also with it intellisense it makes development much more easier.
-
-## Why Tailwind + Shadcn/ui
-
-Shadcn/ui is one the new very cool tools (not a library or a framework) basically you don't install any package when you are using `shadcn`, and it is using `Radix-ui + Tailwind` behind the scenes. And it gives you the code itself and you can customize the components as you wish :) It's really cool right?
-
-And also new Next.js is quite integrated with Tailwind and you can override the stylings of shadcn/ui components very easily using Tailwind, so it's very efficient to use `shadcn + Tailwind` in your Next.js application.
-
-## Why Planetscale serverless database
-
-I wanted to build fullstack application which handles everything from scrach to the end and deloy it to `Vercel`, So I decied to use a `Free`, `server-less` database (planetscale).
-
-## Why react-hook-form + Zod
-
-React hook form is a great library which makes your form more controllable and powerful. It's an easy way to handle your form using react-hook-form and specifically with `zod` validation which is another really powerful library to validate your form schemas. So, the combination of `react-hook-form` and `zod` is great! to build nice validted forms.
-
-## Why Prisma ORM
-
-I used Prisma ORM to manage my database, and it's pretty simple and easy to use it and very popular and powerful features.
-
-**I have also configured `husky` in the application so make it more safe for `pre-commit`**
-
-**I could make the application `much` more better. I know it's not the best, it needs a lot of refactoring in my opinion, but due to lack of time, I couldn't make it more clean and structured.**
-
-1. For example I could create a `FormGenerator` component, and instead of rendering `AddOrEditCatForm` with specifying every `input`, `select`, ... elements. Just need to pass a schema and based on that schema the `FormGenerator` would generate the form for me.
-
-2. I could write more tests `(unit tests)` for my utils function and more `e2e` tests scenarios to cover all the functionalities in the UI like (searching, sorting, ...).
-
-3. Add Image Upload to the Form. I didn't have time unfortunately.
-
-4. Refactoring the application to make it more maintainable and scalable and readable.
-
-**I hope you enhoy the application**
-
-**Below you can find documentaion for each specific component and function if you're interested**
-
-# AddOrEditCatForm Component Documentation
+# Furry Friends
 
 ## Overview
 
-The `AddOrEditCatForm` component is a React form component designed for adding or editing information about cats. It makes use of several libraries and components, such as `react-hook-form`, `zod`, and shadcn UI components to create a user-friendly form for managing cat data.
+Furry Friends is a full-stack web application for managing information about cats. This application is built using a modern tech stack and incorporates various libraries and tools to create a user-friendly and efficient user experience. Below, you can find information about the technologies used, why they were chosen, and documentation for specific components and functions.
 
-## Usage
+## Project Live Demo
+
+You can access the live demo of the project here: [Furry Friends Live Demo](https://furry-friends-beta.vercel.app/)
+
+## Tech Stack
+
+Furry Friends is built using the following technologies:
+
+1. **Next.js**: Next.js was chosen for its powerful features, including Server Components and Server Actions, which help reduce the client-side JavaScript bundle size, improving performance. For more information, refer to the Next.js documentation.
+
+2. **Typescript**: Typescript is used for type safety, making the application more robust and maintainable. It enhances the development process with intelligent code completion.
+
+3. **Tailwind CSS + Shadcn UI**: Shadcn UI is a new tool that combines Radix UI with Tailwind CSS, offering customizable components without the need for additional packages. The integration of Tailwind CSS with Next.js makes styling efficient.
+
+4. **React Hook Form + Zod**: React Hook Form is used for building controllable and powerful forms, and Zod is employed for form schema validation. This combination ensures the creation of well-validated forms.
+
+5. **Planetscale Serverless Database**: To build a full-stack application deployed on Vercel, a free, serverless database, Planetscale, was chosen for data management.
+
+6. **Prisma ORM**: Prisma is utilized to manage the database, offering simplicity, ease of use, and powerful features.
+
+7. **date-fns**: Date-fns is employed for date-related operations.
+
+8. **Lucide-React Icons Package**: Lucide-React provides a collection of icons for use in the application.
+
+9. **ESLint + Husky + Prettier**: ESLint, Husky, and Prettier are configured to ensure code quality and safety with pre-commit checks.
+
+## Future Improvements
+
+Although the application functions well, there are areas for future enhancements:
+
+1. **Form Generator Component**: Consider creating a reusable "FormGenerator" component that generates forms based on a schema, eliminating the need to specify individual input elements.
+
+2. **Testing**: Expand test coverage by adding unit tests for utility functions and end-to-end tests to ensure complete coverage of UI functionality.
+
+3. **Image Upload**: Integrate image upload functionality into the form to enhance the user experience.
+
+4. **Refactoring**: Consider refactoring the codebase to make it more maintainable, scalable, and readable.
+
+We hope you enjoy using Furry Friends!
+
+## Component Documentation
+
+### AddOrEditCatForm Component
+
+The `AddOrEditCatForm` component is designed for adding or editing information about cats. It utilizes React Hook Form, Zod validation, and Shadcn UI components for a user-friendly form.
+
+**Usage:**
 
 To use the `AddOrEditCatForm` component, follow these steps:
 
@@ -74,54 +62,23 @@ To use the `AddOrEditCatForm` component, follow these steps:
    import AddOrEditCatForm from 'path/to/AddOrEditCatForm';
    ```
 
-2. Render the component within your React application. You can provide it with `defaultValues` if you are editing an existing cat, otherwise, omit it for adding a new cat:
+2. Render the component within your React application. You can provide it with `defaultValues` when editing an existing cat.
 
    ```javascript
    <AddOrEditCatForm defaultValues={defaultCatData} />
    ```
 
-## Props
+**Props:**
 
-### `AddOrEditCatFormProps`
+- `defaultValues` (optional): An object containing default values to pre-fill the form fields when editing an existing cat.
 
-- `defaultValues` (optional): An object containing the default values to pre-fill the form fields when editing an existing cat.
+The component structure includes `useModal` and `useToast` contexts, a form created with React Hook Form, an `onSubmit` function, and various form fields like "Name," "Gender," "Date of Birth," and "Bio."
 
-## Component Structure
+### Search Component
 
-The `AddOrEditCatForm` component consists of the following major parts:
+The `Search` component provides search functionality in the application, allowing users to input search queries and triggering a debounced search operation.
 
-1. `useModal` and `useToast` contexts are used to manage modals and display toast notifications.
-
-2. A form is created using the `react-hook-form` library, and it is associated with the `AddOrEditCatFormSchema` for validation.
-
-3. The `onSubmit` function handles form submission, distinguishing between adding a new cat and editing an existing one. It then displays a toast notification and closes the modal if the operation is successful.
-
-4. The form structure consists of several form fields, including "Name," "Gender," "Date of Birth," and "Bio."
-
-## Form Fields
-
-The form fields are rendered using the following UI components:
-
-- `Input` for the "Name" field.
-- `Select` for the "Gender" field, allowing the user to select "Male" or "Female."
-- `Calendar` for the "Date of Birth" field, providing a date picker with a calendar icon.
-- `Textarea` for the "Bio" field.
-
-## Component Dependencies
-
-The `AddOrEditCatForm` component relies on the following libraries and components:
-
-- `react-hook-form` for form management.
-- `zod` for form validation.
-- Various UI components from `'@/components/ui'` for rendering form fields and buttons.
-- `CalendarIcon` from `'lucide-react'` for the calendar icon.
-- `useModal` and `useToast` for managing modals and displaying notifications.
-
-# Search Component Documentation
-
-The `Search` component is a React component designed for implementing search functionality in the web application. It allows users to input search queries and triggers the search operation when the input is debounced. The component relies on several libraries and UI components to achieve this functionality.
-
-## Usage
+**Usage:**
 
 To use the `Search` component, follow these steps:
 
@@ -131,55 +88,19 @@ To use the `Search` component, follow these steps:
    import Search from 'path/to/Search';
    ```
 
-2. Render the component within your React application.
+2. Render the component within your React application:
 
    ```javascript
    <Search />
    ```
 
-## Component Structure
+The component structure includes state management, use of the `useDebounce` hook for debouncing, and UI rendering of the search input field.
 
-The `Search` component consists of the following key parts:
+### Sort Component
 
-1. Import Statements: The component imports the required libraries and components, including React, Next.js, and UI components.
+The `Sort` component enables sorting functionality in the application, allowing users to change the sorting order based on specific criteria, such as sorting by name.
 
-2. State Management: The component uses `useState` to manage the search value and `useDebounce` to debounce the search input.
-
-3. Effect Hook: The `useEffect` hook listens for changes in the debounced search value and triggers the `filter` function, which is responsible for handling the search operation. The `useSearchParams` and `useRouter` hooks are used to obtain the current search parameters and navigate to the search results page.
-
-4. UI Rendering: The component renders a search input field along with a search icon. The search value is bound to the input field, and changes to the input are captured to update the search value.
-
-## Props
-
-The `Search` component does not accept any props, and it relies on internal state management and hooks.
-
-## Component Dependencies
-
-The `Search` component relies on the following libraries, components, and hooks:
-
-- React and Next.js for building the component.
-- `lucide-react` for rendering the search icon.
-- `useDebounce` hook from `'@/hooks/useDebounce'` for debouncing the search input.
-- `filter` function from `'@/lib/filter'` for handling the search operation.
-- `useSearchParams` and `useRouter` hooks from Next.js for managing search parameters and navigation.
-
-## Component Behavior
-
-1. The component renders a search input field with a placeholder for "Search...".
-
-2. As the user types in the search input, the value is captured and stored in the `searchValue` state.
-
-3. The `useDebounce` hook debounces the `searchValue`, waiting for a 400ms pause in typing before updating the `debouncedValue`.
-
-4. The `useEffect` hook monitors changes in the `debouncedValue` and triggers the `filter` function with the search parameters, allowing for search operations to occur.
-
-5. The search icon is displayed to the left of the input field.
-
-# Sort Component Documentation
-
-The `Sort` component is a React component designed for implementing sorting functionality in the web application. It allows users to change the sorting order of a list or data based on a specific criteria, in this case, sorting by name. The component relies on several libraries and UI components to achieve this functionality.
-
-## Usage
+**Usage:**
 
 To use the `Sort` component, follow these steps:
 
@@ -189,117 +110,39 @@ To use the `Sort` component, follow these steps:
    import Sort from 'path/to/Sort';
    ```
 
-2. Render the component within your React application.
+2. Render the component within your React application:
 
    ```javascript
    <Sort />
    ```
 
-## Component Structure
+The component structure includes state management, a tooltip with dynamic content, and UI rendering for sorting by name.
 
-The `Sort` component consists of the following key parts:
+### ModalRoot Component
 
-1. Import Statements: The component imports the required libraries and components, including React, Next.js, and UI components.
+The `ModalRoot` component serves as the root container for displaying modal dialogs within the application. It uses context to manage and render different types of modals dynamically.
 
-2. State Management: The component uses `useState` to manage the sorting order (`sort`).
-
-3. Effect Hook: The `useEffect` hook listens for changes in the `sort` state and triggers the `filter` function, which is responsible for handling the sorting operation. The `useSearchParams` and `useRouter` hooks are used to obtain the current search parameters and navigate to the sorted results.
-
-4. Tooltip Content Rendering: The `renderContent` variable is calculated using `useMemo` and provides the tooltip trigger and content based on the sorting order. It dynamically changes based on the current sorting state (`sort`).
-
-5. UI Rendering: The component renders a tooltip containing the sorting functionality. It includes the text "Sort by: Name" along with a sorting icon and a tooltip with a description of the sorting action.
-
-## Props
-
-The `Sort` component does not accept any props, and it relies on internal state management and hooks.
-
-## Component Dependencies
-
-The `Sort` component relies on the following libraries, components, and hooks:
-
-- React and Next.js for building the component.
-- `lucide-react` for rendering the sorting icons.
-- `filter` function from `'@/lib/filter'` for handling the sorting operation.
-- `useSearchParams` and `useRouter` hooks from Next.js for managing search parameters and navigation.
-- `Tooltip`, `TooltipProvider`, `TooltipTrigger`, and `TooltipContent` components from `'@/components/ui/tooltip'` for tooltip functionality.
-
-## Component Behavior
-
-1. The component initially displays a tooltip with the text "Sort by: Name" and an arrow icon indicating the current sorting order.
-
-2. Clicking the arrow icon toggles the sorting order between ascending (up arrow), descending (down arrow), and no sorting (horizontal arrow). The tooltip content dynamically changes to reflect the current sorting state.
-
-3. The `useEffect` hook listens for changes in the `sort` state and triggers the `filter` function with the sorting criteria. This allows for sorting operations to occur based on the selected sorting order.
-
-# ModalRoot Component Documentation
-
-The `ModalRoot` component is a React component that serves as the root container for displaying modal dialogs within the web application. It uses context to manage and render different types of modals dynamically. The modals are defined in a `modalRepository` and are rendered based on their type.
-
-## Usage
+**Usage:**
 
 To use the `ModalRoot` component, follow these steps:
 
-1. Import the `ModalRoot` component into your application:
-
-   ```javascript
-   import ModalRoot from 'path/to/ModalRoot';
-   ```
+1. Import the `ModalRoot` component into your application.
 
 2. Ensure that the `ModalContext` and `modalRepository` are set up in your application to manage and define modals.
 
-3. Render the `ModalRoot` component within your React application:
+3. Render the `ModalRoot` component within your React application.
 
-   ```javascript
-   <ModalRoot />
-   ```
+The component dynamically renders modals based on the `modalRepository` and the context provided by the `ModalContext`.
 
-## Component Structure
+### Modal Repository
 
-The `ModalRoot` component has a straightforward structure:
+The `Modal Repository` component is a configuration file defining different types of modals and their associated components. It is used to dynamically render the appropriate modal component based on the modal type.
 
-1. Import Statements: The component imports the required dependencies, including React, `ModalContext`, and `modalRepository`.
-
-2. Use `ModalContext`: The `useModal` hook is used to access the `modals` array from the `ModalContext`.
-
-3. Rendering Modals: The component maps through the `modals` array, which contains modal definitions. For each modal, it looks up the corresponding `ModalComponent` from the `modalRepository` based on its type.
-
-4. Rendering Modal Components: If a valid `ModalComponent` is found, it is rendered with its associated `props`.
-
-## Props
-
-The `ModalRoot` component does not accept any props, as it relies on the context and data from the `ModalContext` and `modalRepository`.
-
-## Component Dependencies
-
-The `ModalRoot` component relies on the following dependencies:
-
-- React: For building the component.
-- `ModalContext`: For managing modal state and data.
-- `modalRepository`: A repository containing definitions of different modal types and their associated components.
-
-## Component Behavior
-
-1. The `ModalRoot` component uses the `useModal` hook to access the `modals` array from the `ModalContext`.
-
-2. It maps through the `modals` array and, for each modal, looks up the corresponding `ModalComponent` from the `modalRepository` based on the modal's type.
-
-3. If a valid `ModalComponent` is found in the repository, it is rendered with the associated `props`.
-
-4. This dynamic rendering approach allows you to easily add and manage different types of modals in your application.
-
-# Modal Repository Component Documentation
-
-The `Modal Repository` component is a configuration file that defines different types of modals and their associated components. It is used to dynamically render the appropriate modal component based on the modal type. This component is often used in conjunction with the `ModalRoot` component to manage and display modals in a web application.
-
-## Usage
+**Usage:**
 
 To use the `Modal Repository` component, follow these steps:
 
-1. Import the `Modal Repository` component into your application where you manage modals:
-
-   ```javascript
-   import modalRepository from 'path/to/modalRepository';
-   ```
+1. Import the `Modal Repository` component into your application where you manage modals.
 
 2. Ensure that you have the modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) dynamically imported or available in your application.
 
@@ -307,135 +150,32 @@ To use the `Modal Repository` component, follow these steps:
 
 4. Use the `modalRepository` to dynamically render modals in your application by providing the appropriate modal type.
 
-## Component Structure
+The `modalRepository` associates modal type constants with their corresponding dynamically imported modal components, allowing you to easily add and manage different types of modals in your application.
 
-The `Modal Repository` component has a simple structure:
+### Prisma Initialization Function
 
-1. Import Statements: The component imports the `dynamic` function from 'next/dynamic' to enable dynamic imports.
+The `prisma` initialization function is responsible for setting up and providing access to the Prisma client in the application. It ensures that a single instance of the Prisma client is used throughout the application for efficient database interaction.
 
-2. Dynamic Imports: It dynamically imports modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) using the `dynamic` function. This allows for code-splitting and lazy loading of modal components.
-
-3. Modal Type Constants: The component defines constants (e.g., `MODAL_FOR_ADD_CAT`, `MODAL_FOR_EDIT_CAT`, and `MODAL_FOR_DELETE_CAT`) to represent different modal types.
-
-4. Modal Repository Object: The `modalRepository` object associates modal type constants with their corresponding dynamically imported modal components.
-
-## Props
-
-The `Modal Repository` component does not accept any props. It is a configuration file used to define modal types and their associated components.
-
-## Component Dependencies
-
-The `Modal Repository` component relies on the following dependencies:
-
-- `next/dynamic`: For enabling dynamic imports of modal components.
-
-- Modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`): These are dynamically imported modal components that are associated with modal types.
-
-## Component Behavior
-
-1. The `Modal Repository` component dynamically imports modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) using the `dynamic` function. This enables code-splitting and lazy loading of the components.
-
-2. It defines constants (e.g., `MODAL_FOR_ADD_CAT`, `MODAL_FOR_EDIT_CAT`, and `MODAL_FOR_DELETE_CAT`) to represent different modal types.
-
-3. The `modalRepository` object associates modal type constants with their corresponding dynamically imported modal components. This allows you to easily map and render the appropriate modal component based on the modal type.
-
-# Prisma Initialization Function Documentation
-
-The `prisma` initialization function is responsible for setting up and providing access to the Prisma client in a web application. It ensures that a single instance of the Prisma client is used throughout the application and allows for efficient database interaction. This function is often used with Prisma for database operations.
-
-## Overview
-
-The `prisma` initialization function is designed to create and manage a Prisma client instance, making it available globally within the application. It initializes the Prisma client with specific configurations and ensures that only one instance is created and shared across the application.
-
-## Function Usage
+**Usage:**
 
 To use the `prisma` initialization function, follow these steps:
 
-1. Import the function into your application:
+1. Import the `prisma` initialization function into your application.
 
-   ```javascript
-   import { prisma } from 'path/to/prisma-init';
-   ```
+2. Access the Prisma client instance from the `prisma` variable in your application code to perform database operations using Prisma.
 
-2. Access the Prisma client instance from the `prisma` variable in your application code. You can now perform database operations using Prisma.
+The function initializes the Prisma client with specific configurations and ensures that only one instance is created and shared across the application. It is suitable for database operations.
 
-## Function Structure
+### Filter Function
 
-The `prisma` initialization function has the following structure:
+The `filter` function manages and updates query parameters within the application, allowing sorting and searching functionality by modifying the URL query string and navigating to the updated URL.
 
-1. Import Statements: The function imports the `PrismaClient` from the `'@prisma/client'` package.
-
-2. Global Instance: It defines a global variable named `globalForPrisma` that allows for global access to the Prisma client.
-
-3. Initialization or Reuse: It checks if a Prisma client instance already exists in `globalForPrisma.prisma`. If it exists, the function reuses that instance. If not, it creates a new Prisma client instance with specific logging configurations.
-
-4. Environmental Checks: The function checks if the application is not in a production environment (`process.env.NODE_ENV !== 'production'`). In non-production environments, it assigns the Prisma client instance to `globalForPrisma.prisma`. This ensures that the Prisma client is available for debugging purposes and avoids multiple instantiations.
-
-## Function Dependencies
-
-The `prisma` initialization function depends on the following:
-
-- `@prisma/client`: The Prisma client package is used to create and manage a connection to the database.
-
-## Function Behavior
-
-1. The function creates a single global instance of the Prisma client, allowing it to be accessed from any part of the application.
-
-2. It initializes the Prisma client with specific configurations, such as enabling query logging for debugging purposes.
-
-3. It checks if the application is not in a production environment to enable debugging and multiple instantiations if needed.
-
-# Filter Function Documentation
-
-The `filter` function is responsible for managing and updating query parameters within the web application. It allows for sorting and searching functionality by modifying the URL query string and then navigating to the updated URL. This function is commonly used in Next.js applications to filter and display content based on user preferences.
-
-## Overview
-
-The `filter` function plays a crucial role in web applications where sorting and filtering of content is required. It accepts parameters such as sorting criteria, search terms, the application's router, and a flag to handle the initial render. It constructs a new query string based on the provided parameters and navigates to the updated URL to reflect the filtering or sorting changes.
-
-## Function Usage
+**Usage:**
 
 To use the `filter` function, follow these steps:
 
-1. Import the function into your application:
-
-   ```javascript
-   import { filter } from 'path/to/filter';
-   ```
+1. Import the `filter` function into your application.
 
 2. Call the `filter` function with the desired sorting and search parameters, the router instance from your application, and a `firstRender` flag.
 
-   ```javascript
-   filter(sort, search, router, firstRender);
-   ```
-
-3. The function will update the URL query string based on the provided parameters and navigate to the updated URL.
-
-## Function Structure
-
-The `filter` function has the following structure:
-
-1. Import Statements: The function imports the `AppRouterInstance` from 'next/dist/shared/lib/app-router-context.shared-runtime'. This is used to access the router instance provided by the Next.js framework.
-
-2. Parameters: The function accepts the following parameters:
-
-   - `sort` (string or null): The sorting criteria.
-   - `search` (string or null): The search terms.
-   - `router` (AppRouterInstance): The router instance provided by the Next.js framework.
-   - `firstRender` (object with a `current` property): A flag to manage the initial render.
-
-3. Initial Render Handling: The function checks if it's the initial render (determined by the `firstRender.current` flag). If it is the initial render, the function sets the flag to `false` and returns without making any changes.
-
-4. Query String Construction: The function constructs a new query string (`query`) based on the provided sorting and search parameters. It includes the 'sort' and 'search' query parameters, separated by an ampersand if both are present.
-
-5. URL Navigation: The function uses the router to navigate to the updated URL, which includes the constructed query string.
-
-## Function Behavior
-
-1. The `filter` function manages and updates the URL query parameters based on the provided sorting and search parameters.
-
-2. It handles the initial render by checking the `firstRender.current` flag and setting it to `false` after the first call.
-
-3. The function constructs a new query string based on the provided sorting and search parameters.
-
-4. It uses the router to navigate to the updated URL, reflecting the filtering or sorting changes in the application.
+The function updates the URL query parameters based on the provided parameters and navigates to the updated URL, reflecting the filtering or sorting changes in the application.
