@@ -9,7 +9,10 @@ export default function AddCat() {
       modalType={MODAL_FOR_ADD_CAT}
       title='Add Cat'
       triggerContent={
-        <div className='flex h-[200px] cursor-pointer flex-col items-center justify-center rounded-md bg-gray-100'>
+        <div
+          className='flex h-[200px] cursor-pointer flex-col items-center justify-center rounded-md bg-gray-100'
+          data-testid='add-cat-card'
+        >
           <PlusCircle /> Add
         </div>
       }

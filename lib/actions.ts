@@ -94,7 +94,7 @@ export async function deleteCat(data: Cat): Promise<MutationResponse> {
     const result = AddOrEditCatFormSchema.safeParse(data);
 
     if (!result.success) {
-      return { success: false };
+      return { success: false, data: 'Somethin went wrong!' };
     }
 
     const cat = await prisma.cat.delete({

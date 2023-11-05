@@ -41,10 +41,6 @@ const ModalProvider = ({ children }: { children: React.ReactNode }) => {
     setModals(filteredModals);
   };
 
-  const closeAllModals = () => {
-    setModals([]);
-  };
-
   return (
     <ModalContext.Provider
       value={{

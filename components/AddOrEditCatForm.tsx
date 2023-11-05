@@ -51,20 +51,19 @@ export default function AddOrEditCatForm({
   const { isSubmitting } = form.formState;
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    try {
-      let res;
-      if (defaultValues) {
-        const updateCatData = { ...data, id: defaultValues.id } as Cat;
-        res = await updateCat(updateCatData);
-      } else {
-        res = await createCat(data);
-      }
-      toast({
-        title: res.data,
-      });
+    let res;
+    if (defaultValues) {
+      const updateCatData = { ...data, id: defaultValues.id } as Cat;
+      res = await updateCat(updateCatData);
+    } else {
+      res = await createCat(data);
+    }
+    toast({
+      title: res.data,
+    });
+
+    if (res.success) {
       setShouldCloseModal(!shouldCloseModal);
-    } catch (error) {
-      console.log('Something went wrong', error);
     }
   };
 
@@ -93,7 +92,7 @@ export default function AddOrEditCatForm({
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder='Select gender' />
+                    <SelectValue placeholder='Select gender' {...field} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -122,6 +121,7 @@ export default function AddOrEditCatForm({
                         'pl-3 text-left font-normal',
                         !field.value && 'text-muted-foreground'
                       )}
+                      data-testid='date-picker'
                     >
                       {field.value ? (
                         format(field.value, 'PPP')
