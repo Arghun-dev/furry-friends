@@ -1,73 +1,87 @@
 'use server';
 
+/**
+ * Server-Side Functions for Cat Management
+ */
+
+// Import statements
 import { z } from 'zod';
 import { AddOrEditCatFormSchema } from '@/lib/schema';
 import { prisma } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
-import { Cat, Prisma } from '@prisma/client';
+import { Cat } from '@prisma/client';
 
+// Type for form inputs
 type Inputs = z.infer<typeof AddOrEditCatFormSchema>;
 
+// Type for query parameters
 export type SearchParamsType = {
-  [key: string]: string | undefined;
+  search?: string;
+  sort?: 'asc' | 'desc';
 };
 
+// Type for mutation response
 type MutationResponse = {
   success: boolean;
   data?: string;
 };
 
+/**
+ * Retrieve a list of cats based on search and sort parameters.
+ * @param searchParams - Search and sort parameters.
+ * @returns {Promise<{ data: Cat[], error: any }>} - List of cats and optional error information.
+ */
 export async function getCats(searchParams: SearchParamsType) {
   try {
+    const { search, sort } = searchParams;
+
     let cats;
 
-    if (searchParams?.search && searchParams?.sort) {
-      const { search, sort } = searchParams as {
-        search: string;
-        sort: Prisma.SortOrder;
-      };
+    if (search && sort) {
       cats = await prisma.cat.findMany({
         where: {
           name: {
             contains: search,
           },
         },
-
         orderBy: [
           {
             name: sort,
           },
         ],
       });
-    } else if (searchParams?.search && !searchParams?.sort) {
-      const { search } = searchParams;
+    } else if (search) {
       cats = await prisma.cat.findMany({
         where: {
           name: {
             contains: search,
           },
         },
+      });
+    } else if (sort) {
+      cats = await prisma.cat.findMany({
+        orderBy: [
+          {
+            name: sort,
+          },
+        ],
       });
     } else {
-      const { sort } = searchParams as {
-        sort: Prisma.SortOrder;
-      };
-      cats = await prisma.cat.findMany({
-        orderBy: [
-          {
-            name: sort,
-          },
-        ],
-      });
+      cats = await prisma.cat.findMany();
     }
 
     return { data: cats, error: null };
-  } catch (err) {
-    console.log(err);
-    return { error: err };
+  } catch (error) {
+    console.error('Error in getCats:', error);
+    return { error };
   }
 }
 
+/**
+ * Create a new cat based on the provided data.
+ * @param data - Cat data to create.
+ * @returns {Promise<MutationResponse>} - Success status and optional success message.
+ */
 export async function createCat(data: Inputs): Promise<MutationResponse> {
   try {
     const result = AddOrEditCatFormSchema.safeParse(data);
@@ -83,18 +97,23 @@ export async function createCat(data: Inputs): Promise<MutationResponse> {
     revalidatePath('/');
 
     return { success: true, data: `${cat.name} created successfully!` };
-  } catch (e) {
-    console.log(e);
-    return { success: false, data: 'Somethin went wrong!' };
+  } catch (error) {
+    console.error('Error in createCat:', error);
+    return { success: false, data: 'Something went wrong!' };
   }
 }
 
+/**
+ * Delete a cat based on the provided data.
+ * @param data - Cat data to delete.
+ * @returns {Promise<MutationResponse>} - Success status and optional success message.
+ */
 export async function deleteCat(data: Cat): Promise<MutationResponse> {
   try {
     const result = AddOrEditCatFormSchema.safeParse(data);
 
     if (!result.success) {
-      return { success: false, data: 'Somethin went wrong!' };
+      return { success: false, data: 'Something went wrong!' };
     }
 
     const cat = await prisma.cat.delete({
@@ -109,12 +128,17 @@ export async function deleteCat(data: Cat): Promise<MutationResponse> {
       success: true,
       data: `${cat.name} deleted successfully!`,
     };
-  } catch (e) {
-    console.log(e);
-    return { success: false, data: 'Somethin went wrong!' };
+  } catch (error) {
+    console.error('Error in deleteCat:', error);
+    return { success: false, data: 'Something went wrong!' };
   }
 }
 
+/**
+ * Update a cat based on the provided data.
+ * @param data - Cat data to update.
+ * @returns {Promise<MutationResponse>} - Success status and optional success message.
+ */
 export async function updateCat(data: Cat): Promise<MutationResponse> {
   try {
     const result = AddOrEditCatFormSchema.safeParse(data);
@@ -136,8 +160,8 @@ export async function updateCat(data: Cat): Promise<MutationResponse> {
       success: true,
       data: `${cat.name} updated successfully!`,
     };
-  } catch (e) {
-    console.log(e);
-    return { success: false, data: 'Somethin went wrong!' };
+  } catch (error) {
+    console.error('Error in updateCat:', error);
+    return { success: false, data: 'Something went wrong!' };
   }
 }
