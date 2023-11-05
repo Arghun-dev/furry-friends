@@ -4,12 +4,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { AddOrEditCatFormSchema } from '@/lib/schema';
-import { createCat } from '@/app/_actions';
+import { createCat, updateCat } from '@/lib/actions';
 import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -20,38 +19,54 @@ import {
   SelectContent,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
+import { useModal } from '@/context/ModalContext';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { Calendar } from './ui/calendar';
+import { Cat } from '@prisma/client';
 
 type Inputs = z.infer<typeof AddOrEditCatFormSchema>;
 
-export default function AddOrEditCatForm() {
+export interface AddOrEditCatFormProps {
+  defaultValues?: any;
+}
+
+export default function AddOrEditCatForm({
+  defaultValues,
+}: AddOrEditCatFormProps) {
+  const { setShouldCloseModal, shouldCloseModal } = useModal();
   const form = useForm<Inputs>({
     resolver: zodResolver(AddOrEditCatFormSchema),
+    defaultValues,
   });
-  const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const result = await createCat(data);
+  const { isSubmitting } = form.formState;
 
-    if (!result) {
-      console.log('Something went wrong');
-      return;
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    if (defaultValues) {
+      const updateCatData = { ...data, id: defaultValues.id } as Cat;
+      const result = await updateCat(updateCatData);
+
+      if (!result) {
+        console.log('Something went wrong');
+        return;
+      }
+    } else {
+      const result = await createCat(data);
+
+      if (!result) {
+        console.log('Something went wrong');
+        return;
+      }
     }
 
-    // if (result.error) {
-    //   console.log(result.error.);
-    //   return;
-    // }
-
-    form.reset();
+    setShouldCloseModal(!shouldCloseModal);
   };
 
   return (
@@ -147,7 +162,9 @@ export default function AddOrEditCatForm() {
             </FormItem>
           )}
         />
-        <Button type='submit'>Add</Button>
+        <Button type='submit' disabled={isSubmitting}>
+          {isSubmitting ? 'Loading...' : defaultValues ? 'Edit' : 'Add'}
+        </Button>
       </form>
     </Form>
   );
