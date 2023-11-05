@@ -176,3 +176,59 @@ The `Sort` component relies on the following libraries, components, and hooks:
 2. Clicking the arrow icon toggles the sorting order between ascending (up arrow), descending (down arrow), and no sorting (horizontal arrow). The tooltip content dynamically changes to reflect the current sorting state.
 
 3. The `useEffect` hook listens for changes in the `sort` state and triggers the `filter` function with the sorting criteria. This allows for sorting operations to occur based on the selected sorting order.
+
+# ModalRoot Component Documentation
+
+The `ModalRoot` component is a React component that serves as the root container for displaying modal dialogs within the web application. It uses context to manage and render different types of modals dynamically. The modals are defined in a `modalRepository` and are rendered based on their type.
+
+## Usage
+
+To use the `ModalRoot` component, follow these steps:
+
+1. Import the `ModalRoot` component into your application:
+
+   ```javascript
+   import ModalRoot from 'path/to/ModalRoot';
+   ```
+
+2. Ensure that the `ModalContext` and `modalRepository` are set up in your application to manage and define modals.
+
+3. Render the `ModalRoot` component within your React application:
+
+   ```javascript
+   <ModalRoot />
+   ```
+
+## Component Structure
+
+The `ModalRoot` component has a straightforward structure:
+
+1. Import Statements: The component imports the required dependencies, including React, `ModalContext`, and `modalRepository`.
+
+2. Use `ModalContext`: The `useModal` hook is used to access the `modals` array from the `ModalContext`.
+
+3. Rendering Modals: The component maps through the `modals` array, which contains modal definitions. For each modal, it looks up the corresponding `ModalComponent` from the `modalRepository` based on its type.
+
+4. Rendering Modal Components: If a valid `ModalComponent` is found, it is rendered with its associated `props`.
+
+## Props
+
+The `ModalRoot` component does not accept any props, as it relies on the context and data from the `ModalContext` and `modalRepository`.
+
+## Component Dependencies
+
+The `ModalRoot` component relies on the following dependencies:
+
+- React: For building the component.
+- `ModalContext`: For managing modal state and data.
+- `modalRepository`: A repository containing definitions of different modal types and their associated components.
+
+## Component Behavior
+
+1. The `ModalRoot` component uses the `useModal` hook to access the `modals` array from the `ModalContext`.
+
+2. It maps through the `modals` array and, for each modal, looks up the corresponding `ModalComponent` from the `modalRepository` based on the modal's type.
+
+3. If a valid `ModalComponent` is found in the repository, it is rendered with the associated `props`.
+
+4. This dynamic rendering approach allows you to easily add and manage different types of modals in your application.
