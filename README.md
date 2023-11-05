@@ -284,3 +284,49 @@ The `Modal Repository` component relies on the following dependencies:
 2. It defines constants (e.g., `MODAL_FOR_ADD_CAT`, `MODAL_FOR_EDIT_CAT`, and `MODAL_FOR_DELETE_CAT`) to represent different modal types.
 
 3. The `modalRepository` object associates modal type constants with their corresponding dynamically imported modal components. This allows you to easily map and render the appropriate modal component based on the modal type.
+
+# Prisma Initialization Function Documentation
+
+The `prisma` initialization function is responsible for setting up and providing access to the Prisma client in a web application. It ensures that a single instance of the Prisma client is used throughout the application and allows for efficient database interaction. This function is often used with Prisma for database operations.
+
+## Overview
+
+The `prisma` initialization function is designed to create and manage a Prisma client instance, making it available globally within the application. It initializes the Prisma client with specific configurations and ensures that only one instance is created and shared across the application.
+
+## Function Usage
+
+To use the `prisma` initialization function, follow these steps:
+
+1. Import the function into your application:
+
+   ```javascript
+   import { prisma } from 'path/to/prisma-init';
+   ```
+
+2. Access the Prisma client instance from the `prisma` variable in your application code. You can now perform database operations using Prisma.
+
+## Function Structure
+
+The `prisma` initialization function has the following structure:
+
+1. Import Statements: The function imports the `PrismaClient` from the `'@prisma/client'` package.
+
+2. Global Instance: It defines a global variable named `globalForPrisma` that allows for global access to the Prisma client.
+
+3. Initialization or Reuse: It checks if a Prisma client instance already exists in `globalForPrisma.prisma`. If it exists, the function reuses that instance. If not, it creates a new Prisma client instance with specific logging configurations.
+
+4. Environmental Checks: The function checks if the application is not in a production environment (`process.env.NODE_ENV !== 'production'`). In non-production environments, it assigns the Prisma client instance to `globalForPrisma.prisma`. This ensures that the Prisma client is available for debugging purposes and avoids multiple instantiations.
+
+## Function Dependencies
+
+The `prisma` initialization function depends on the following:
+
+- `@prisma/client`: The Prisma client package is used to create and manage a connection to the database.
+
+## Function Behavior
+
+1. The function creates a single global instance of the Prisma client, allowing it to be accessed from any part of the application.
+
+2. It initializes the Prisma client with specific configurations, such as enabling query logging for debugging purposes.
+
+3. It checks if the application is not in a production environment to enable debugging and multiple instantiations if needed.
