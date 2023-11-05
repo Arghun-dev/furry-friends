@@ -1,7 +1,7 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useState, useEffect, useRef } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, useRef, useMemo } from 'react';
 import {
   ArrowUpDown,
   ArrowUpNarrowWide,
@@ -13,28 +13,19 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+import { filter } from '@/lib/filter';
 
 export default function Sort() {
+  const searchParams = useSearchParams();
   const firstRender = useRef(true);
   const router = useRouter();
-  const [sort, setSort] = useState<'asc' | 'desc' | undefined>();
+  const [sort, setSort] = useState<string | null>(null);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
+    filter(sort, searchParams.get('search'), router, firstRender);
+  }, [sort]);
 
-    if (!sort) {
-      router.push('/cats');
-    } else if (sort === 'asc') {
-      router.push('/cats?sort=asc');
-    } else {
-      router.push('/cats?sort=desc');
-    }
-  }, [sort, router]);
-
-  const renderContent = () => {
+  const renderContent = useMemo(() => {
     if (!sort) {
       return {
         trigger: (
@@ -57,12 +48,10 @@ export default function Sort() {
     }
 
     return {
-      trigger: (
-        <ArrowUpDown className='icon' onClick={() => setSort(undefined)} />
-      ),
+      trigger: <ArrowUpDown className='icon' onClick={() => setSort(null)} />,
       content: 'Clear Sort',
     };
-  };
+  }, [sort]);
 
   return (
     <TooltipProvider>
@@ -70,11 +59,12 @@ export default function Sort() {
         <TooltipTrigger>
           <div className='flex'>
             <p className='mr-2 text-sm'>Sort by:</p>{' '}
-            <strong className='text-sm'>Name</strong> {renderContent().trigger}
+            <strong className='text-sm'>Name</strong>
+            {renderContent.trigger}
           </div>
         </TooltipTrigger>
         <TooltipContent>
-          <p>{renderContent().content}</p>
+          <p>{renderContent.content}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

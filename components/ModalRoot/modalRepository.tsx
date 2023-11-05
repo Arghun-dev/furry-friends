@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic';
 
 const ModalForAddCat = dynamic(
-  () => import('@/components/Modal/modals/AddCat')
+  () => import('@/components/ModalRoot/modals/AddCat')
 );
 
 const ModalForEditCat = dynamic(
-  () => import('@/components/Modal/modals/EditCat')
+  () => import('@/components/ModalRoot/modals/EditCat')
 );
 
 const ModalForDeleteCat = dynamic(
-  () => import('@/components/Modal/modals/DeleteCat')
+  () => import('@/components/ModalRoot/modals/DeleteCat')
 );
 
 export const MODAL_FOR_ADD_CAT = 'MODAL_FOR_ADD_CAT';

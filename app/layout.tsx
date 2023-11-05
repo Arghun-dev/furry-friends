@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import ModalProvider from '@/context/ModalContext';
 import PageHeader from '@/components/PageHeader';
-import ModalRoot from '@/components/Modal/ModalRoot';
+import ModalRoot from '@/components/ModalRoot/ModalRoot';
 
 import './globals.css';
 

@@ -1,6 +1,6 @@
 import { Cat } from '@prisma/client';
-import EditCat from './Modal/modals/EditCat';
-import DeleteCat from './Modal/modals/DeleteCat';
+import EditCat from './ModalRoot/modals/EditCat';
+import DeleteCat from './ModalRoot/modals/DeleteCat';
 
 export default function EditDeleteActions({ cat }: { cat: Cat }) {
   if (!cat) return null;

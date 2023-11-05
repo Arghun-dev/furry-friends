@@ -1,30 +1,22 @@
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Search as SearchIcon } from 'lucide-react';
 import { Input } from './ui/input';
 import { useDebounce } from '@/hooks/useDebounce';
+import { filter } from '@/lib/filter';
 
 export default function Search() {
+  const searchParams = useSearchParams();
   const firstRender = useRef(true);
   const router = useRouter();
   const [searchValue, setSearchValue] = useState('');
   const debouncedValue = useDebounce(searchValue, 400);
 
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-
-    if (!debouncedValue.length) {
-      console.log('run');
-      router.push('/');
-    } else {
-      router.push(`/cats?search=${debouncedValue}`);
-    }
-  }, [debouncedValue, router]);
+    filter(searchParams.get('sort'), debouncedValue, router, firstRender);
+  }, [debouncedValue]);
 
   return (
     <div className='relative flex items-center sm:w-1/3'>

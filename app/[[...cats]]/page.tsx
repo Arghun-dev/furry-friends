@@ -1,5 +1,5 @@
 import { SearchParamsType, getCats } from '@/lib/actions';
-import AddCat from '@/components/Modal/modals/AddCat';
+import AddCat from '@/components/ModalRoot/modals/AddCat';
 import Sort from '@/components/Sort';
 import EditDeleteActions from '@/components/EditDeleteActions';
 

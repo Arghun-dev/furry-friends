@@ -1,6 +1,6 @@
 import { PlusCircle } from 'lucide-react';
 import AddOrEditCatForm from '@/components/AddOrEditCatForm';
-import { Modal } from '@/components/Modal/Modal';
+import { Modal } from '@/components/ModalRoot/Modal';
 import { MODAL_FOR_ADD_CAT } from '../modalRepository';
 
 export default function AddCat() {
