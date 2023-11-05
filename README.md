@@ -16,6 +16,36 @@ You can access to the project live in here: [link](https://furry-friends-beta.ve
 8. `lucide-react icons package`
 9. `eslint + husky + prettier`
 
+## Why Next.js
+
+I used `Next.js` because of the recent feature of Next.js specifically `Server Components`, `Server Actions` which are really cool and powerful. rendering as far as possible on the server instead of the client to reduce the javascript bundle size which is better for performance. And most of other features of Next.js which you can read on Next.js Docs.
+
+## Why Typescript
+
+I honestly always use typescript, because I believe typescript is pretty nice and type safe which makes your application less buggy and more maintainable. And also with it intellisense it makes development much more easier.
+
+## Why Tailwind + Shadcn/ui
+
+Shadcn/ui is one the new very cool tools (not a library or a framework) basically you don't install any package when you are using `shadcn`, and it is using `Radix-ui + Tailwind` behind the scenes. And it gives you the code itself and you can customize the components as you wish :) It's really cool right?
+
+And also new Next.js is quite integrated with Tailwind and you can override the stylings of shadcn/ui components very easily using Tailwind, so it's very efficient to use `shadcn + Tailwind` in your Next.js application.
+
+## Why Planetscale serverless database
+
+I wanted to build fullstack application which handles everything from scrach to the end and deloy it to `Vercel`, So I decied to use a `Free`, `server-less` database (planetscale).
+
+## Why react-hook-form + Zod
+
+React hook form is a great library which makes your form more controllable and powerful. It's an easy way to handle your form using react-hook-form and specifically with `zod` validation which is another really powerful library to validate your form schemas. So, the combination of `react-hook-form` and `zod` is great! to build nice validted forms.
+
+## Why Prisma ORM
+
+I used Prisma ORM to manage my database, and it's pretty simple and easy to use it and very popular and powerful features.
+
+**I have also configured `husky` in the application so make it more safe for `pre-commit`**
+
+**I hope you enhoy the application**
+
 # AddOrEditCatForm Component Documentation
 
 ## Overview
