@@ -44,7 +44,19 @@ I used Prisma ORM to manage my database, and it's pretty simple and easy to use 
 
 **I have also configured `husky` in the application so make it more safe for `pre-commit`**
 
+**I could make the application `much` more better. I know it's not the best, it needs a lot of refactoring in my opinion, but due to lack of time, I couldn't make it more clean and structured.**
+
+1. For example I could create a `FormGenerator` component, and instead of rendering `AddOrEditCatForm` with specifying every `input`, `select`, ... elements. Just need to pass a schema and based on that schema the `FormGenerator` would generate the form for me.
+
+2. I could write more tests `(unit tests)` for my utils function and more `e2e` tests scenarios to cover all the functionalities in the UI like (searching, sorting, ...).
+
+3. Add Image Upload to the Form. I didn't have time unfortunately.
+
+4. Refactoring the application to make it more maintainable and scalable and readable.
+
 **I hope you enhoy the application**
+
+**Below you can find documentaion for each specific component and function if you're interested**
 
 # AddOrEditCatForm Component Documentation
 
