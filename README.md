@@ -232,3 +232,55 @@ The `ModalRoot` component relies on the following dependencies:
 3. If a valid `ModalComponent` is found in the repository, it is rendered with the associated `props`.
 
 4. This dynamic rendering approach allows you to easily add and manage different types of modals in your application.
+
+# Modal Repository Component Documentation
+
+The `Modal Repository` component is a configuration file that defines different types of modals and their associated components. It is used to dynamically render the appropriate modal component based on the modal type. This component is often used in conjunction with the `ModalRoot` component to manage and display modals in a web application.
+
+## Usage
+
+To use the `Modal Repository` component, follow these steps:
+
+1. Import the `Modal Repository` component into your application where you manage modals:
+
+   ```javascript
+   import modalRepository from 'path/to/modalRepository';
+   ```
+
+2. Ensure that you have the modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) dynamically imported or available in your application.
+
+3. Define the modal types using constants and associate them with the corresponding modal components in the `modalRepository`.
+
+4. Use the `modalRepository` to dynamically render modals in your application by providing the appropriate modal type.
+
+## Component Structure
+
+The `Modal Repository` component has a simple structure:
+
+1. Import Statements: The component imports the `dynamic` function from 'next/dynamic' to enable dynamic imports.
+
+2. Dynamic Imports: It dynamically imports modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) using the `dynamic` function. This allows for code-splitting and lazy loading of modal components.
+
+3. Modal Type Constants: The component defines constants (e.g., `MODAL_FOR_ADD_CAT`, `MODAL_FOR_EDIT_CAT`, and `MODAL_FOR_DELETE_CAT`) to represent different modal types.
+
+4. Modal Repository Object: The `modalRepository` object associates modal type constants with their corresponding dynamically imported modal components.
+
+## Props
+
+The `Modal Repository` component does not accept any props. It is a configuration file used to define modal types and their associated components.
+
+## Component Dependencies
+
+The `Modal Repository` component relies on the following dependencies:
+
+- `next/dynamic`: For enabling dynamic imports of modal components.
+
+- Modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`): These are dynamically imported modal components that are associated with modal types.
+
+## Component Behavior
+
+1. The `Modal Repository` component dynamically imports modal components (e.g., `ModalForAddCat`, `ModalForEditCat`, and `ModalForDeleteCat`) using the `dynamic` function. This enables code-splitting and lazy loading of the components.
+
+2. It defines constants (e.g., `MODAL_FOR_ADD_CAT`, `MODAL_FOR_EDIT_CAT`, and `MODAL_FOR_DELETE_CAT`) to represent different modal types.
+
+3. The `modalRepository` object associates modal type constants with their corresponding dynamically imported modal components. This allows you to easily map and render the appropriate modal component based on the modal type.
