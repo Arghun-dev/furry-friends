@@ -60,7 +60,6 @@ export default function AddOrEditCatForm({
     }
     toast({
       title: res.data,
-      duration: 1000000,
     });
 
     if (res.success) {
