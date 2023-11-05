@@ -330,3 +330,58 @@ The `prisma` initialization function depends on the following:
 2. It initializes the Prisma client with specific configurations, such as enabling query logging for debugging purposes.
 
 3. It checks if the application is not in a production environment to enable debugging and multiple instantiations if needed.
+
+# Filter Function Documentation
+
+The `filter` function is responsible for managing and updating query parameters within the web application. It allows for sorting and searching functionality by modifying the URL query string and then navigating to the updated URL. This function is commonly used in Next.js applications to filter and display content based on user preferences.
+
+## Overview
+
+The `filter` function plays a crucial role in web applications where sorting and filtering of content is required. It accepts parameters such as sorting criteria, search terms, the application's router, and a flag to handle the initial render. It constructs a new query string based on the provided parameters and navigates to the updated URL to reflect the filtering or sorting changes.
+
+## Function Usage
+
+To use the `filter` function, follow these steps:
+
+1. Import the function into your application:
+
+   ```javascript
+   import { filter } from 'path/to/filter';
+   ```
+
+2. Call the `filter` function with the desired sorting and search parameters, the router instance from your application, and a `firstRender` flag.
+
+   ```javascript
+   filter(sort, search, router, firstRender);
+   ```
+
+3. The function will update the URL query string based on the provided parameters and navigate to the updated URL.
+
+## Function Structure
+
+The `filter` function has the following structure:
+
+1. Import Statements: The function imports the `AppRouterInstance` from 'next/dist/shared/lib/app-router-context.shared-runtime'. This is used to access the router instance provided by the Next.js framework.
+
+2. Parameters: The function accepts the following parameters:
+
+   - `sort` (string or null): The sorting criteria.
+   - `search` (string or null): The search terms.
+   - `router` (AppRouterInstance): The router instance provided by the Next.js framework.
+   - `firstRender` (object with a `current` property): A flag to manage the initial render.
+
+3. Initial Render Handling: The function checks if it's the initial render (determined by the `firstRender.current` flag). If it is the initial render, the function sets the flag to `false` and returns without making any changes.
+
+4. Query String Construction: The function constructs a new query string (`query`) based on the provided sorting and search parameters. It includes the 'sort' and 'search' query parameters, separated by an ampersand if both are present.
+
+5. URL Navigation: The function uses the router to navigate to the updated URL, which includes the constructed query string.
+
+## Function Behavior
+
+1. The `filter` function manages and updates the URL query parameters based on the provided sorting and search parameters.
+
+2. It handles the initial render by checking the `firstRender.current` flag and setting it to `false` after the first call.
+
+3. The function constructs a new query string based on the provided sorting and search parameters.
+
+4. It uses the router to navigate to the updated URL, reflecting the filtering or sorting changes in the application.
