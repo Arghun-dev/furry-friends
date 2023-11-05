@@ -4,6 +4,18 @@
 
 You can access to the project live in here: [link](https://furry-friends-beta.vercel.app/)
 
+## Tech Stacks
+
+1. `Next.js`
+2. `Typescript`
+3. `Tailwind + Shadcn/ui`
+4. `react-hooks-form + zod`
+5. `Planetscale serverless database`
+6. `Prisma ORM`
+7. `date-fns`
+8. `lucide-react icons package`
+9. `eslint + husky + prettier`
+
 # AddOrEditCatForm Component Documentation
 
 ## Overview
