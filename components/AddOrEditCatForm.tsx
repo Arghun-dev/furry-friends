@@ -31,6 +31,7 @@ import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { Calendar } from './ui/calendar';
 import { Cat } from '@prisma/client';
+import { useToast } from './ui/use-toast';
 
 type Inputs = z.infer<typeof AddOrEditCatFormSchema>;
 
@@ -42,6 +43,7 @@ export default function AddOrEditCatForm({
   defaultValues,
 }: AddOrEditCatFormProps) {
   const { setShouldCloseModal, shouldCloseModal } = useModal();
+  const { toast } = useToast();
   const form = useForm<Inputs>({
     resolver: zodResolver(AddOrEditCatFormSchema),
     defaultValues,
@@ -49,24 +51,21 @@ export default function AddOrEditCatForm({
   const { isSubmitting } = form.formState;
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    if (defaultValues) {
-      const updateCatData = { ...data, id: defaultValues.id } as Cat;
-      const result = await updateCat(updateCatData);
-
-      if (!result) {
-        console.log('Something went wrong');
-        return;
+    try {
+      let res;
+      if (defaultValues) {
+        const updateCatData = { ...data, id: defaultValues.id } as Cat;
+        res = await updateCat(updateCatData);
+      } else {
+        res = await createCat(data);
       }
-    } else {
-      const result = await createCat(data);
-
-      if (!result) {
-        console.log('Something went wrong');
-        return;
-      }
+      toast({
+        title: res.data,
+      });
+      setShouldCloseModal(!shouldCloseModal);
+    } catch (error) {
+      console.log('Something went wrong', error);
     }
-
-    setShouldCloseModal(!shouldCloseModal);
   };
 
   return (

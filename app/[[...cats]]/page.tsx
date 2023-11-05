@@ -2,6 +2,9 @@ import { SearchParamsType, getCats } from '@/lib/actions';
 import AddCat from '@/components/ModalRoot/modals/AddCat';
 import Sort from '@/components/Sort';
 import EditDeleteActions from '@/components/EditDeleteActions';
+import { AlertCircle } from 'lucide-react';
+
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 interface HomePageProps {
   searchParams: SearchParamsType;
@@ -10,7 +13,17 @@ interface HomePageProps {
 export default async function Home({ searchParams }: HomePageProps) {
   const { data, error } = await getCats(searchParams);
 
-  if (error || !Array.isArray(data)) return <div>Something went wrong!</div>;
+  if (error || !Array.isArray(data)) {
+    return (
+      <Alert variant='destructive'>
+        <AlertCircle className='h-4 w-4' />
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription>
+          Something went wring in fetching cats data.
+        </AlertDescription>
+      </Alert>
+    );
+  }
 
   return (
     <>

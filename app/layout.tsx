@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import ModalProvider from '@/context/ModalContext';
 import PageHeader from '@/components/PageHeader';
 import ModalRoot from '@/components/ModalRoot/ModalRoot';
+import { Toaster } from '@/components/ui/toaster';
 
 import './globals.css';
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <div className='container'>
             <PageHeader />
             {children}
+            <Toaster />
             <div className='hidden'>
               <ModalRoot />
             </div>

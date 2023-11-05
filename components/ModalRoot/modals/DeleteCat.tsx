@@ -7,15 +7,20 @@ import { useModal } from '@/context/ModalContext';
 import { Modal } from '../Modal';
 import { MODAL_FOR_DELETE_CAT } from '../modalRepository';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 
 export default function DeleteCat({ cat }: { cat: Cat }) {
   const { closeModal } = useModal();
+  const { toast } = useToast();
   const [loading, setLoading] = useState(false);
 
   const onAccept = async () => {
     try {
       setLoading(true);
-      await deleteCat(cat);
+      const res = await deleteCat(cat);
+      toast({
+        title: res.data,
+      });
     } catch (error) {
       console.log(error);
     } finally {

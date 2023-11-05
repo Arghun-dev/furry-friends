@@ -12,6 +12,11 @@ export type SearchParamsType = {
   [key: string]: string | undefined;
 };
 
+type MutationResponse = {
+  success: boolean;
+  data?: string;
+};
+
 export async function getCats(searchParams: SearchParamsType) {
   try {
     let cats;
@@ -63,24 +68,35 @@ export async function getCats(searchParams: SearchParamsType) {
   }
 }
 
-export async function createCat(data: Inputs) {
-  const result = AddOrEditCatFormSchema.safeParse(data);
+export async function createCat(data: Inputs): Promise<MutationResponse> {
+  try {
+    const result = AddOrEditCatFormSchema.safeParse(data);
 
-  if (!result.success) {
-    return { success: false, error: result.error.format() };
+    if (!result.success) {
+      return { success: false };
+    }
+
+    const cat = await prisma.cat.create({
+      data: result.data,
+    });
+
+    revalidatePath('/');
+
+    return { success: true, data: `${cat.name} created successfully!` };
+  } catch (e) {
+    console.log(e);
+    return { success: false, data: 'Somethin went wrong!' };
   }
-
-  const cat = await prisma.cat.create({
-    data: result.data,
-  });
-
-  revalidatePath('/');
-
-  return { date: cat };
 }
 
-export async function deleteCat(data: Cat) {
+export async function deleteCat(data: Cat): Promise<MutationResponse> {
   try {
+    const result = AddOrEditCatFormSchema.safeParse(data);
+
+    if (!result.success) {
+      return { success: false };
+    }
+
     const cat = await prisma.cat.delete({
       where: {
         id: data.id,
@@ -89,15 +105,24 @@ export async function deleteCat(data: Cat) {
 
     revalidatePath('/');
 
-    return { date: `Cat with the name of ${cat.name} deleted successfully!` };
+    return {
+      success: true,
+      data: `${cat.name} deleted successfully!`,
+    };
   } catch (e) {
     console.log(e);
-    return { data: 'Somethin went wrong!' };
+    return { success: false, data: 'Somethin went wrong!' };
   }
 }
 
-export async function updateCat(data: Cat) {
+export async function updateCat(data: Cat): Promise<MutationResponse> {
   try {
+    const result = AddOrEditCatFormSchema.safeParse(data);
+
+    if (!result.success) {
+      return { success: false };
+    }
+
     const cat = await prisma.cat.update({
       where: {
         id: data.id,
@@ -107,9 +132,12 @@ export async function updateCat(data: Cat) {
 
     revalidatePath('/');
 
-    return { date: `Cat with the name of ${cat.name} updated successfully!` };
+    return {
+      success: true,
+      data: `${cat.name} updated successfully!`,
+    };
   } catch (e) {
     console.log(e);
-    return { data: 'Somethin went wrong!' };
+    return { success: false, data: 'Somethin went wrong!' };
   }
 }
