@@ -60,29 +60,23 @@ export const Modal = ({
     setOpen(true);
   };
 
-  if (isAlert) {
-    return (
-      <AlertDialog open={open}>
-        <AlertDialogTrigger onClick={showModal}>
-          {triggerContent}
-        </AlertDialogTrigger>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle data-testid='modal-title'>
-              {title}
-            </AlertDialogTitle>
-            <AlertDialogDescription>{description}</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={hideModal}>Cancel</AlertDialogCancel>
-            {alertDialogAction}
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    );
-  }
-
-  return (
+  return isAlert ? (
+    <AlertDialog open={open}>
+      <AlertDialogTrigger onClick={showModal}>
+        {triggerContent}
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle data-testid='modal-title'>{title}</AlertDialogTitle>
+          <AlertDialogDescription>{description}</AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel onClick={hideModal}>Cancel</AlertDialogCancel>
+          {alertDialogAction}
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  ) : (
     <Dialog open={open}>
       <DialogTrigger asChild onClick={showModal}>
         {triggerContent}
